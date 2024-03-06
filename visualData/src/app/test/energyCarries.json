@@ -1,0 +1,83 @@
+{
+    "odata.metadata": "https://opendata.cbs.nl/ODataApi/OData/80030ned/$metadata#Cbs.OData.WebAPI.Energiedragers",
+    "value": [
+        {
+            "Key": "T001027",
+            "Title": "Totaal energiedragers",
+            "Description": "Totaal van fossiele brandstoffen, hernieuwbare energie, kernenergie en overige energiedragers.",
+            "CategoryGroupID": 1
+        },
+        {
+            "Key": "E006620",
+            "Title": "Totaal fossiele brandstoffen",
+            "Description": "Totaal van aardgas, steenkool, stookolie en overige fossiele brandstoffen.",
+            "CategoryGroupID": 2
+        },
+        {
+            "Key": "E006560",
+            "Title": "Aardgas",
+            "Description": "Gas van natuurlijke oorsprong dat vooral bestaat uit methaan. Het ontstaat bij hetzelfde proces dat tot de vorming van aardolie leidt. Voor vervoer over lange afstanden per schip wordt aardgas vloeibaar gemaakt. 1 TJ komt overeen met ongeveer 31 600 m3 aardgas.",
+            "CategoryGroupID": 2
+        },
+        {
+            "Key": "E006461",
+            "Title": "Steenkool",
+            "Description": "Fossiele brandstof die bestaat uit verkoolde plantenresten. \r\n\r\nSoorten steenkool zijn antraciet, cokeskool en ketelkool. Al deze soorten hebben een netto verbrandingswaarde groter dan 24 megajoule per kilogram van het asvrije en natte product. 1 TJ komt overeen met ongeveer 40 000 kg kolen.",
+            "CategoryGroupID": 2
+        },
+        {
+            "Key": "E006534",
+            "Title": "Stookolie",
+            "Description": "Zware olie die overblijft na destillatie in de raffinaderij. Het wordt vooral gebruikt als brandstof voor zeeschepen (bunkering) en in mindere mate in de industrie en bij elektriciteits- en warmteproductie.\r\n\r\n1 TJ komt overeen met ruim 24 000 kg stookolie.",
+            "CategoryGroupID": 2
+        },
+        {
+            "Key": "E006621",
+            "Title": "Overige fossiele brandstoffen",
+            "Description": "Overige aardolieproducten, raffinaderijgassen, cokesovengas, hoogovengas en chemische restgassen. \r\n\r\nRaffinaderijgassen en chemische restgassen zijn restgassen die als bijproduct ontstaan bij de verwerking van aardolie in de raffinaderijen en de petrochemische industrie. \r\n\r\nCokesovengas komt vrij bij de verkoling van steenkool tot steenkoolcokes. \r\n\r\nHoogovengas komt vrij bij de productie van ijzer in hoogovens.",
+            "CategoryGroupID": 2
+        },
+        {
+            "Key": "E006565",
+            "Title": "Totaal hernieuwbare energie",
+            "Description": "Totaal van zonnestroom, windenergie, waterkracht en biomassa.",
+            "CategoryGroupID": 3
+        },
+        {
+            "Key": "E006590",
+            "Title": "Zonnestroom",
+            "Description": "Zonnestraling omgezet in elektriciteit.\r\n\r\nOok bekend als fotovolta\u00efsch opgewekte zonne-energie.",
+            "CategoryGroupID": 3
+        },
+        {
+            "Key": "E006588",
+            "Title": "Windenergie",
+            "Description": "Energie, opgewekt met een windmolen of windturbine. \r\n\r\nWindmolens staan op land of in binnenwateren of op zee. Windmolens in binnenwateren worden gerekend bij windenergie op land.",
+            "CategoryGroupID": 3
+        },
+        {
+            "Key": "E006587",
+            "Title": "Waterkracht",
+            "Description": "Energie, opgewekt met behulp van vallend of stromend water.",
+            "CategoryGroupID": 3
+        },
+        {
+            "Key": "E006566",
+            "Title": "Biomassa",
+            "Description": "Plantaardig of dierlijk materiaal van recente oorsprong in gebruik voor productie van energie.\r\n\r\nVoorbeelden zijn hout, mest en afval uit de voedselverwerkende industrie.",
+            "CategoryGroupID": 3
+        },
+        {
+            "Key": "E006602",
+            "Title": "Kernenergie",
+            "Description": "Energie die vrijkomt bij splitsing of fusie van atoomkernen. \r\n\r\nDoor verhitting van water wordt deze energie omgezet in stoom onder hoge druk. Vervolgens kan met deze stoom elektriciteit worden opgewekt met behulp van een stoomturbine.",
+            "CategoryGroupID": 4
+        },
+        {
+            "Key": "E006622",
+            "Title": "Overige energiedragers",
+            "Description": "Elektriciteit en/of warmte verkregen uit expansieturbines (waarin gassen onder hoge druk uitzetten, waardoor de turbine elektriciteit produceert), stoom, voedingwater en de verbranding van het niet-biogene deel van huishoudelijk en industrieel afval.",
+            "CategoryGroupID": 5
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import GraphBuilder from './app/modules/builder/components/GraphBuilder';
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -7,9 +8,7 @@ function App() {
   
 
   return (
-    <div className="w-full text-4xl text-blue-500">
-      This is a Tailwind CSS component!
-    </div>
+    <GraphBuilder/>
   )
 }
 
