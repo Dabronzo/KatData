@@ -1,18 +1,12 @@
 import { PayloadAction, createSlice  } from "@reduxjs/toolkit";
+import { BuilderContainer, DataChip } from "../../../types/builder";
+import { RootState } from "../../../store";
 
 
-type DataChip = {
-    id: string;
-    name: string;
-}
-
-type BuilderType = {
-    xAxis: DataChip[],
-    yAxis: DataChip[],
-};
 
 
-const builderInitialState: BuilderType ={
+const builderInitialState: BuilderContainer ={
+    selection: [],
     xAxis: [],
     yAxis: [],
 };
@@ -23,11 +17,19 @@ export const builderSlice = createSlice({
     reducers: {
         addChipToXAxis: (state, action: PayloadAction<DataChip>) => {
             state.xAxis.push(action.payload);
+        },
+        addChipToSelection: (state, action: PayloadAction<DataChip>) => {
+            state.selection.push(action.payload);
         }
     },
 
 });
 
-export const {addChipToXAxis} = builderSlice.actions;
+export const selectSelectionData = (state: RootState) => state.builder.builder.selection;
+
+
+
+
+export const {addChipToXAxis, addChipToSelection} = builderSlice.actions;
 
 export default builderSlice.reducer;

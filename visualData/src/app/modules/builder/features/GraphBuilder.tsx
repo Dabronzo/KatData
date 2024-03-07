@@ -1,15 +1,18 @@
 import React from "react";
 import GraphBuilderLayout from "./layout/GraphBuilderLayout";
+import Catalog from "./catalog/components/Catalog";
+import SelectContainer from "./selection/SelectionContainer";
 
 
 
 const GraphBuilder = () => {
 
-    console.log('heua');
     return (
         <GraphBuilderLayout>
             <div>
                 <h1>Left Container</h1>
+                <Catalog />
+                <SelectContainer />
             </div>
             <div>
                 <h1>Right Container</h1>

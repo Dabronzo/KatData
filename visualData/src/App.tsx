@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import GraphBuilder from './app/modules/builder/components/GraphBuilder';
+import GraphBuilder from './app/modules/builder/features/GraphBuilder';
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
