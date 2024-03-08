@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import CatalogList from "./CatalogItem";
 import { useAppSelector } from "../../../../../hooks";
 import { selectFossilCarries, selectNuclearCarries, selectOthersCarries, selectRenewableCarries } from "../store/catalogSlice";
+import { CatalogItem } from "../../../../../types/energyCarries";
 
 
 const Catalog = () => {
@@ -11,51 +12,49 @@ const Catalog = () => {
     const nuclearData = useAppSelector(selectNuclearCarries);
     const otherData = useAppSelector(selectOthersCarries);
 
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+    const periodeData: CatalogItem  = {
+        Key: 'PERIODE',
+        Title: 'Date',
+        Description: '',
+        CategoryGroupID: 0,
+    }
 
-    const toggleCollapse = () => {
-        setIsCollapsed(!isCollapsed);
-    };
+
 
 
     return (
         <div>
-            <button 
-                type="button" 
-                onClick={toggleCollapse} 
-                className="text-blue-500 hover:underline focus:outline-none"
+            <div 
+                className="focus:outline-none"
             >
-                Energy Carries {isCollapsed ? 'E' : 'C'}
-            </button>
-            {isCollapsed && (
-                <div className="max-h-80 overflow-y-auto">
-                
-                <div className="ml-4">
-                    <CatalogList
+                <strong>Energy Carries</strong>
+            </div>
+            <div className="h-80 overflow-y-auto">
+                <CatalogList
                     name='Fossil'
                     items={fossilData}
                     />
-                </div>
-                <div className="ml-4">
-                    <CatalogList
+                 <CatalogList
                         name="Renewable"
                         items={renewableData}
                     />
-                </div>
-                <div className="ml-4">
-                     <CatalogList
+                <CatalogList
                         name="Nuclear"
                         items={nuclearData}
                     />
-                </div>
-                <div className="ml-4">
-                     <CatalogList
+                <CatalogList
                         name="Other"
                         items={otherData}
                     />
+                <div className="mt-2">
+                    <strong>Dimentions</strong>
                 </div>
-                </div>
-            )}
+                <CatalogList
+                        name="Periode"
+                        items={[periodeData]}
+                    />
+            </div>
+           
         </div>
     );
 

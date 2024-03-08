@@ -42,7 +42,9 @@ const Chip = ({chip, className}:Props) => {
       )}
                     <SubMenuIcon height={15} width={15} color={'#262928'} />
                 </button>
-                <SubMenu isOpen={isSubmenuOpen} onClose={() => setSubmenuOpen(false)} positionTop={chipRef.current?.getBoundingClientRect().top} positionLeft={chipRef.current?.getBoundingClientRect().left}>
+                <SubMenu isOpen={isSubmenuOpen} onClose={() => {
+                    setSubmenuOpen(false);
+                }} positionTop={chipRef.current?.getBoundingClientRect().top} positionLeft={chipRef.current?.getBoundingClientRect().left} offsetWidth={chipRef.current?.offsetWidth}>
                     <ChipSubMenu  id={chip.id} unitySelected={chip.unity}/>
                 </SubMenu>
         </div>
