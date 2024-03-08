@@ -22,7 +22,7 @@ const CatalogList = ({name, items}: Props) => {
     const createChip = (item: CatalogItem): DataChip => {
       const newChip = new ChipBuilder(item).build(); 
       return newChip;
-    }
+    };
 
 
    return (

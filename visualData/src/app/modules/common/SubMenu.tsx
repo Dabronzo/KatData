@@ -20,8 +20,8 @@ const SubMenu: React.FC<SubmenuProps> = ({ children, isOpen, onClose, positionTo
       left: 0
     }
     if (positionTop && positionLeft) {
-      styleSubmenu.top = positionTop;
-      styleSubmenu.left = positionLeft + 80
+      styleSubmenu.top = positionTop + 17;
+      styleSubmenu.left = positionLeft + 123
     }
     return styleSubmenu;
   }

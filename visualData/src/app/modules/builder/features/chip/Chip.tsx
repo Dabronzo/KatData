@@ -24,17 +24,19 @@ const Chip = ({chip, className}:Props) => {
 
 
     return (
-        <div className={`flex items-center rounded-lg ${className}`} style={chipStyle} ref={chipRef}>
-            <div className="inline-block text-white text-[14px]  p-1">{chip.verboseName}</div>
+        <div className={`flex px-2 py-2 items-center rounded-lg ${className}`} style={chipStyle} ref={chipRef} >
+            <div className="inline-block text-[#262928] text-[14px]">
+                <strong>{chip.verboseName}</strong>
+            </div>
             <button
                 type='button' 
-                className="ml-1 mr-1 text-white flex items-center" 
+                className="ml-2 text-white flex items-center" 
                 onClick={() => setSubmenuOpen(!isSubmenuOpen)}
                 >
                     {chip.unity === EnergyType.ELETRICITY ? (
-        <EletricityIcon height={15} width={15} color={'#f0ea78'}/>
+        <EletricityIcon height={15} width={15} color={'#C8A219'}/>
       ) : chip.unity === EnergyType.HEAT ? (
-        <HeatIcon height={15} width={15} color={'#f5784e'}/>
+        <HeatIcon height={15} width={15} color={'#A7202C'}/>
       ) : (
         <GlobeIcon height={13} width={13} color={'#262928'}/>
       )}
