@@ -1,14 +1,16 @@
-import { DataChip } from "../../../types/builder";
+import { nanoid } from "@reduxjs/toolkit";
+import { DataChip, EnergyType } from "../../../types/builder";
 import { CatalogItem } from "../../../types/energyCarries";
 
 
 class ChipBuilder {
 
     private chipData: DataChip ={
+        id: nanoid(),
         verboseName: '',
         dataValue: '',
         color: '',
-        unity: '',
+        unity: EnergyType.ELETRICITY, // by default
         dataType: '',
     }
 
@@ -43,9 +45,9 @@ class ChipBuilder {
         }
     }
 
-    private setUnity() {
-        this.chipData.unity = 'TJ'
-    }
+    // private setUnity() {
+    //     this.chipData.unity = EnergyType.ELETRICITY
+    // }
 
     private setDataType() {
         this.chipData.dataType = 'STRING'
@@ -55,7 +57,7 @@ class ChipBuilder {
         this.chipData.dataValue = this.energyCarrie.Key;
         this.chipData.verboseName = this.energyCarrie.Title;
         this.setColor();
-        this.setUnity();
+        // this.setUnity();
         this.setDataType();
 
         return this.chipData;

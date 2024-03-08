@@ -1,21 +1,34 @@
+import { EntityState } from '@reduxjs/toolkit';
 import { z } from 'zod';
 
 
+
+export enum EnergyType {
+    ELETRICITY = 'Eletricity',
+    HEAT = 'Heat',
+    BOTH = 'Both'
+}
+
+
+
+
 const dataChipSchema = z.object({
+    id: z.string(),
     verboseName: z.string(),
     dataValue: z.string(),
     color: z.string(),
-    unity: z.string(),
+    unity: z.nativeEnum(EnergyType),
     dataType: z.string(),
 });
 
-const builderContainersSchema = z.object({
-    selection: z.array(dataChipSchema),
-    xAxis: z.array(dataChipSchema),
-    yAxis: z.array(dataChipSchema),
-});
-
-
-
 export type DataChip = z.infer<typeof dataChipSchema>;
-export type BuilderContainer = z.infer<typeof builderContainersSchema>;
+
+type Selection = EntityState<DataChip, string>
+
+
+
+export type BuilderContainer = {
+    selection: Selection,
+    xAxis: DataChip[],
+    yAxis: DataChip[],
+}

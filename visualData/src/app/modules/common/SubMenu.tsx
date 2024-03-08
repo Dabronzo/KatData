@@ -3,19 +3,35 @@ import useClickOutside from "./hooks/useClickOutside";
 
 type SubmenuProps = {
   isOpen: boolean;
-  handleClose: () => void;
+  onClose: () => void;
   children: React.ReactNode[] | React.ReactNode;
+  positionTop: undefined | number;
+  positionLeft: undefined | number;
 };
 
-const SubMenu: React.FC<SubmenuProps> = ({ children, isOpen, handleClose }) => {
+const SubMenu: React.FC<SubmenuProps> = ({ children, isOpen, onClose, positionTop, positionLeft }) => {
 
   const submenuRef = useRef<HTMLDivElement>(null);
-  useClickOutside(submenuRef, handleClose)
+  useClickOutside(submenuRef, onClose)
+
+  const createStyleObject = () => {
+    const styleSubmenu = {
+      top: 0,
+      left: 0
+    }
+    if (positionTop && positionLeft) {
+      styleSubmenu.top = positionTop;
+      styleSubmenu.left = positionLeft + 80
+    }
+    return styleSubmenu;
+  }
+
+  console.log('this is the position top', positionTop);
 
   return (
-    <div className="relative inline-block" ref={submenuRef}>
+    <div className="absolute inline-block z-10"  ref={submenuRef} style={createStyleObject()}>
       {isOpen && (
-        <div className="absolute top-0 left-0 bg-[#ADD8E6] p-2 rounded shadow-md z-10">
+        <div className="bg-[#ADD8E6] p-2 rounded shadow-md ">
           {children}
         </div>
       )}
