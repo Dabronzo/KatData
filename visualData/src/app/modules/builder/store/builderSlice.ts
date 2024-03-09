@@ -1,4 +1,4 @@
-import { PayloadAction, createEntityAdapter, createSlice  } from "@reduxjs/toolkit";
+import { PayloadAction, createEntityAdapter, createSelector, createSlice  } from "@reduxjs/toolkit";
 import { BuilderContainer, DataChip, EnergyType } from "../../../types/builder";
 import { RootState } from "../../../store";
 
@@ -23,6 +23,10 @@ export const builderSlice = createSlice({
         addChipToXAxis: (state, action: PayloadAction<DataChip>) => {
             state.xAxis.push(action.payload);
         },
+        addChipToYAxis: (state, action: PayloadAction<DataChip>) => {
+            // y Axis can only accept one chip
+            state.yAxis = [action.payload]
+        },
         addChipToSelection: (state, action: PayloadAction<DataChip>) => {
            chipAdapter.addOne(state.selection, action.payload);
         },
@@ -36,18 +40,40 @@ export const builderSlice = createSlice({
         },
         deleteChipSelection: (state, action: PayloadAction<string>) => {
             chipAdapter.removeOne(state.selection, action.payload);
+        },
+        deleteChipFromXAxis: (state, action: PayloadAction<string>) => {
+            const indexToDelete = state.xAxis.findIndex((chip) => chip.id === action.payload);
+            state.xAxis.splice(indexToDelete, 1);
+        },
+        deleteChipFromYAxis: (state) => {
+            state.yAxis = [];
         }
     },
 
 });
 
 
+const selectXAxis = (state: RootState) => state.builder.builder.xAxis;
+
+const selectYAxis = (state: RootState) => state.builder.builder.yAxis;
+
+export const xAxisSelector = createSelector([selectXAxis], (xAxis) => xAxis);
+
+export const yAxisSelector = createSelector([selectYAxis], (yAxis) => yAxis);
 
 export const selectSelectionData = (state: RootState) => chipAdapter.getSelectors().selectAll(state.builder.builder.selection);
 
 
 
 
-export const {addChipToXAxis, addChipToSelection, updateChipSelection, deleteChipSelection} = builderSlice.actions;
+export const {
+    addChipToXAxis,
+    addChipToYAxis,
+    addChipToSelection,
+    updateChipSelection,
+    deleteChipSelection,
+    deleteChipFromXAxis,
+    deleteChipFromYAxis,
+} = builderSlice.actions;
 
 export default builderSlice.reducer;

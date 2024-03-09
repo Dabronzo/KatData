@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { DataChip, EnergyType } from "../../../types/builder";
+import { DataChip, EnergyType, TimeStamp } from "../../../types/builder";
 import { CatalogItem } from "../../../types/energyCarries";
 
 
@@ -10,7 +10,6 @@ class ChipBuilder {
         verboseName: '',
         dataValue: '',
         color: '',
-        unity: EnergyType.ELETRICITY, // by default
         dataType: '',
     }
 
@@ -64,24 +63,32 @@ class ChipBuilder {
             break;
             case 'E006622':
                 this.chipData.color = '#C62F78';
-                this.chipData.verboseName = 'Other Carries'
-            
+                this.chipData.verboseName = 'Other Carries';
+            break;
+            case 'PERIODE':
+                this.chipData.color = '#39393A';
+                this.chipData.verboseName = this.energyCarrie.Title;
+            break;
 
         }
     }
-
-    // private setUnity() {
-    //     this.chipData.unity = EnergyType.ELETRICITY
-    // }
 
     private setDataType() {
         this.chipData.dataType = 'STRING'
     }
 
+    private setUnity() {
+        if (this.energyCarrie.Key === 'PERIODE') {
+            this.chipData.timeStamp = TimeStamp.YEARLY;
+        } else {
+            this.chipData.unity = EnergyType.ELETRICITY;
+        }
+    }
+
     build(): DataChip {
         this.chipData.dataValue = this.energyCarrie.Key;
         this.setColorAndName();
-        // this.setUnity();
+        this.setUnity();
         this.setDataType();
 
         return this.chipData;
