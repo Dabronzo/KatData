@@ -13,11 +13,11 @@ import { deleteChipFromXAxis } from "../../store/builderSlice";
 type Props = {
     chip: DataChip;
     className: string;
-    selection?: boolean;
+    onAxis?: boolean;
 }
 
 
-const Chip = ({chip, className, selection}:Props) => {
+const Chip = ({chip, className, onAxis}:Props) => {
     
 
     const chipStyle = {
@@ -64,7 +64,7 @@ const Chip = ({chip, className, selection}:Props) => {
                         <p>Years</p>
                     )}
                 </div>
-                {!selection ? (
+                {!onAxis ? (
                     <>
                         <button
                             type='button'

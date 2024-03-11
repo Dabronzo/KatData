@@ -4,6 +4,7 @@ import Catalog from "./catalog/components/Catalog";
 import SelectContainer from "./containers/SelectionContainer";
 import LineContainer from "./containers/LineContainer";
 import DragLayer from "../../common/components/DragLayers";
+import PreviewContainer from "./preview/PreviewContainer";
 
 
 
@@ -20,6 +21,7 @@ const GraphBuilder = () => {
             </div>
             <div>
                 <h1>Right Container</h1>
+                <PreviewContainer />
             </div>
         </GraphBuilderLayout>
     )

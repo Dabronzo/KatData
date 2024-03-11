@@ -1,0 +1,239 @@
+{
+    "odata.metadata": "https://opendata.cbs.nl/ODataApi/OData/80030ned/$metadata#Cbs.OData.WebAPI.UntypedDataSet&$select=CentraleDecentraleProductie,%20Energiedragers,%20Perioden,%20Elektriciteit_4",
+    "value": [
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "1998JJ00",
+            "Elektriciteit_4": "    28.0"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "1999JJ00",
+            "Elektriciteit_4": "    23.8"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2000JJ00",
+            "Elektriciteit_4": "    26.0"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2001JJ00",
+            "Elektriciteit_4": "    26.5"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2002JJ00",
+            "Elektriciteit_4": "    26.2"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2003JJ00",
+            "Elektriciteit_4": "    26.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2004JJ00",
+            "Elektriciteit_4": "    23.9"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2005JJ00",
+            "Elektriciteit_4": "    22.9"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2006JJ00",
+            "Elektriciteit_4": "    23.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2007JJ00",
+            "Elektriciteit_4": "    23.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2008JJ00",
+            "Elektriciteit_4": "    20.8"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2009JJ00",
+            "Elektriciteit_4": "    20.6"
+        },
+        {
+            "CentraleDecentraleProductie": "E007022",
+            "Energiedragers": "E006461",
+            "Perioden": "2010JJ00",
+            "Elektriciteit_4": "    18.5"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "1998JJ00",
+            "Elektriciteit_4": "    28.0"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "1999JJ00",
+            "Elektriciteit_4": "    23.8"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2000JJ00",
+            "Elektriciteit_4": "    26.0"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2001JJ00",
+            "Elektriciteit_4": "    26.5"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2002JJ00",
+            "Elektriciteit_4": "    26.2"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2003JJ00",
+            "Elektriciteit_4": "    26.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2004JJ00",
+            "Elektriciteit_4": "    23.9"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2005JJ00",
+            "Elektriciteit_4": "    22.9"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2006JJ00",
+            "Elektriciteit_4": "    23.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2007JJ00",
+            "Elektriciteit_4": "    23.4"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2008JJ00",
+            "Elektriciteit_4": "    20.8"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2009JJ00",
+            "Elektriciteit_4": "    20.6"
+        },
+        {
+            "CentraleDecentraleProductie": "E007042",
+            "Energiedragers": "E006461",
+            "Perioden": "2010JJ00",
+            "Elektriciteit_4": "    18.5"
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "1998JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "1999JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2000JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2001JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2002JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2003JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2004JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2005JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2006JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2007JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2008JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2009JJ00",
+            "Elektriciteit_4": ""
+        },
+        {
+            "CentraleDecentraleProductie": "E007043",
+            "Energiedragers": "E006461",
+            "Perioden": "2010JJ00",
+            "Elektriciteit_4": ""
+        }
+    ]
+}

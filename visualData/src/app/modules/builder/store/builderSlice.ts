@@ -1,6 +1,7 @@
 import { PayloadAction, createEntityAdapter, createSelector, createSlice  } from "@reduxjs/toolkit";
-import { BuilderContainer, DataChip, EnergyType } from "../../../types/builder";
+import { BuilderContainer, DataChip, EnergyType, SelectorBuilderResponse } from "../../../types/builder";
 import { RootState } from "../../../store";
+import ChartBuilder from "../constructors/chartBuilder";
 
 
 const chipAdapter = createEntityAdapter({
@@ -65,7 +66,23 @@ export const selectSelectionData = (state: RootState) => chipAdapter.getSelector
 
 export const getChipFromSelection = (id: string) => (state: RootState) => chipAdapter.getSelectors().selectById(state.builder.builder.selection, id);
 
+export const chartBuilderSelector = createSelector([xAxisSelector], (xAxis) => {
 
+    const selectorResponse: SelectorBuilderResponse = {
+        chart: null,
+        error: null,
+    }
+    const builderResponse = new ChartBuilder(xAxis).build();
+
+    if (builderResponse.error) {
+        selectorResponse.error = builderResponse.error;
+        return selectorResponse;
+    }
+    if (builderResponse.chart) {
+        selectorResponse.chart = builderResponse.chart;
+        return selectorResponse;
+    }
+})
 
 
 export const {
