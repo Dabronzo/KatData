@@ -6,20 +6,25 @@ import EletricityIcon from "../../../../../assets/EletricityIcon";
 import HeatIcon from "../../../../../assets/HeatIcon";
 import ChipSubMenu from "../submenu/SubmenuChip";
 import GlobeIcon from "../../../../../assets/GlobeIcon";
-import ChipDragLayer from "../../../common/components/ChipDragLayer";
+import CrossIcon from "../../../../../assets/CrossIcon";
+import { useAppDispatch } from "../../../../hooks";
+import { deleteChipFromXAxis } from "../../store/builderSlice";
 
 type Props = {
     chip: DataChip;
-    className: string
+    className: string;
+    selection?: boolean;
 }
 
 
-const Chip = ({chip, className}:Props) => {
+const Chip = ({chip, className, selection}:Props) => {
     
 
     const chipStyle = {
         backgroundColor: chip.color,
     };
+
+    const dispatch = useAppDispatch();
 
 
 
@@ -48,12 +53,8 @@ const Chip = ({chip, className}:Props) => {
                 <div className={`inline-block ${chip.timeStamp ? 'text-[#F7F7FF]' : 'text-[#262928]'} text-[14px]`}>
                     <strong>{chip.verboseName}</strong>
                 </div>
-                <button
-                    type='button'
-                    className="ml-2 text-white flex items-center"
-                    onClick={() => setSubmenuOpen(!isSubmenuOpen)}
-                >
-                    {chip.unity === EnergyType.ELETRICITY ? (
+                <div className="ml-1">
+                {chip.unity === EnergyType.ELETRICITY ? (
                         <EletricityIcon height={15} width={15} color={'#C8A219'} />
                     ) : chip.unity === EnergyType.HEAT ? (
                         <HeatIcon height={15} width={15} color={'#A7202C'} />
@@ -62,15 +63,25 @@ const Chip = ({chip, className}:Props) => {
                     ) : (
                         <p>Years</p>
                     )}
-                    <SubMenuIcon height={15} width={15} color={chip.timeStamp ? '#F7F7FF' : '#262928'} />
-                </button>
-                <SubMenu isOpen={isSubmenuOpen} onClose={() => {
-                    setSubmenuOpen(false);
-                } } positionTop={initialPosition.top} positionLeft={initialPosition.left} offsetWidth={initialPosition.width}>
-                    <ChipSubMenu id={chip.id} unitySelected={chip.unity} />
-                </SubMenu>
+                </div>
+                {!selection ? (
+                    <>
+                        <button
+                            type='button'
+                            className="ml-1 text-white flex items-center"
+                            onClick={() => setSubmenuOpen(!isSubmenuOpen)}
+                        >
+                            <SubMenuIcon height={15} width={15} color={chip.timeStamp ? '#F7F7FF' : '#262928'} />
+                        </button><SubMenu isOpen={isSubmenuOpen} onClose={() => {
+                            setSubmenuOpen(false);
+                        } } positionTop={initialPosition.top} positionLeft={initialPosition.left} offsetWidth={initialPosition.width}>
+                            <ChipSubMenu id={chip.id} unitySelected={chip.unity} />
+                            </SubMenu>
+                    </>
+                ) : ( <button className="ml-1" type="button" onClick={() => dispatch(deleteChipFromXAxis(chip.id))}>
+                        <CrossIcon height={15} width={15} />
+                    </button>)}
             </div>
-            <ChipDragLayer chip={chip} className={className} />
         </>
       );
 };

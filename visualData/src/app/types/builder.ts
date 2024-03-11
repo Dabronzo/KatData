@@ -12,8 +12,6 @@ export enum TimeStamp {
     YEARLY = 'Years',
 }
 
-
-
 const dataChipSchema = z.object({
     id: z.string(),
     verboseName: z.string(),
@@ -40,4 +38,9 @@ export type BuilderContainer = {
 
 export enum DragType {
     DATACHIP = 'Datachip'
+}
+
+export interface DragItem {
+    data: DataChip,
+    className: string,
 }

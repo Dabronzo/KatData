@@ -7,9 +7,6 @@ const chipAdapter = createEntityAdapter({
     selectId: (chip: DataChip) => chip.id
 });
 
-
-
-
 const builderInitialState: BuilderContainer ={
     selection: chipAdapter.getInitialState(),
     xAxis: [],
@@ -21,7 +18,10 @@ export const builderSlice = createSlice({
     initialState: builderInitialState,
     reducers: {
         addChipToXAxis: (state, action: PayloadAction<DataChip>) => {
-            state.xAxis.push(action.payload);
+            const chip = {
+                ...chipAdapter.getSelectors().selectById(state.selection, action.payload.id)
+            };
+            state.xAxis.push(chip);
         },
         addChipToYAxis: (state, action: PayloadAction<DataChip>) => {
             // y Axis can only accept one chip
@@ -62,6 +62,8 @@ export const xAxisSelector = createSelector([selectXAxis], (xAxis) => xAxis);
 export const yAxisSelector = createSelector([selectYAxis], (yAxis) => yAxis);
 
 export const selectSelectionData = (state: RootState) => chipAdapter.getSelectors().selectAll(state.builder.builder.selection);
+
+export const getChipFromSelection = (id: string) => (state: RootState) => chipAdapter.getSelectors().selectById(state.builder.builder.selection, id);
 
 
 
