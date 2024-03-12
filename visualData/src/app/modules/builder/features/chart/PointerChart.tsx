@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Plot from 'react-plotly.js';
 import { useAppSelector } from "../../../../hooks";
 import { chartDataSelector } from "./store/chartData";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 
 
@@ -12,6 +14,25 @@ const PointerChart = () => {
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     const plotRef = useRef<HTMLDivElement>(null);
+
+    const handleDownloadPDF = () => {
+        if (plotRef.current) {
+            // Use HTML2Canvas to capture the content of the Plotly chart
+            html2canvas(plotRef.current).then(canvas => {
+                // Convert the canvas to a data URL
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a jsPDF instance
+                const pdf = new jsPDF();
+
+                // Add the image to the PDF
+                pdf.addImage(imageDataUrl, 'PNG', 10, 10, 190, 100); // Adjust the coordinates and dimensions as needed
+
+                // Save or open the PDF
+                pdf.save('chart.pdf');
+            });
+        }
+    };
 
     useEffect(() => {
         const updateDimensions = () => {
@@ -35,6 +56,7 @@ const PointerChart = () => {
 
 
 
+
     // if (data.length === 0 ) {
     //     console.lo
     //     return null;
@@ -44,6 +66,11 @@ const PointerChart = () => {
 
     return (
         <div ref={plotRef} style={{ width: '100%', height: '100%' }}>
+            {data.length > 0 && (
+                <button type="button" onClick={handleDownloadPDF}>
+                    Donwload
+                </button>
+            )}
         {data.length > 0 ? (
             <Plot
                 data={data.map(i => ({
