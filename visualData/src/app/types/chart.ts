@@ -7,14 +7,14 @@ export enum ChartType {
 
 const lineSchema = z.object({
     color: z.string(),
-    widith: z.number(),
+    width: z.number(),
 });
 
 
 
 const chartDataSchema = z.object({
     type: z.nativeEnum(ChartType),
-    x: z.array(z.number()),
+    x: z.array(z.string()),
     y: z.array(z.number()),
     name: z.string(),
     line: lineSchema,
@@ -33,7 +33,7 @@ const cbsValueResponseSchema = z.object({
     CentraleDecentraleProductie: z.string(),
     Energiedragers: z.string(),
     Perioden: z.string(),
-    ElektriciteitTJ_3: z.number().nullable(),
+    ElektriciteitTJ_3: z.number().nullable().optional(),
 })
 
 export const cbsDataResponseSchema = z.object({

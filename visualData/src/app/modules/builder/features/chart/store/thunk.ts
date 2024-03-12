@@ -1,14 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { CbsDataResponse, cbsDataResponseSchema } from "../../../../../types/chart";
+import { Chart } from "../../../../../types/builder";
 
+export type ChartThunkResponse = {
+  data: CbsDataResponse;
+  chart: Chart;
+}
 
-
-export const fetchChartData = createAsyncThunk<CbsDataResponse, string>(
+export const fetchChartData = createAsyncThunk<ChartThunkResponse, [string, Chart]>(
     'chart/fetchChartData',
-    async (args, { rejectWithValue }) => {
+    async ([args, chart], { rejectWithValue }) => {
       try {
-        const response = await axios.get(`https://opendata.cbs.nl/ODataFeed/odata/80030ned/TypedDataSet?%24filter=((Energiedragers%20eq%20%27E006560%27)%20or%20(Energiedragers%20eq%20%27E006461%27))&%24select=ID%2C%20CentraleDecentraleProductie%2C%20Energiedragers%2C%20Perioden%2C%20ElektriciteitTJ_3&%24format=json`);
+        const response = await axios.get(args);
   
         // Assuming your response structure is { data: YourDataType[] }
         const validData = cbsDataResponseSchema.safeParse(response.data);
@@ -17,16 +21,14 @@ export const fetchChartData = createAsyncThunk<CbsDataResponse, string>(
             return rejectWithValue('Invalid Data')
         }
 
- 
-
-        for (const item of validData.data.value) {
-            
-            if (item.Energiedragers === "E006560") {
-                console.log('on the thunk', item)
-            }
+        const thunkResponse: ChartThunkResponse = {
+          data: validData.data,
+          chart: chart,
         }
+
+
         // Return the response data as the payload
-        return validData.data;
+        return thunkResponse;
       } catch (error) {
         console.error('error', error);
   
@@ -35,3 +37,6 @@ export const fetchChartData = createAsyncThunk<CbsDataResponse, string>(
       }
     }
   );
+
+
+  

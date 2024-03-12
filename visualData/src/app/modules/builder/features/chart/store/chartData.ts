@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ChartDataSlice } from "../../../../../types/chart";
 import { fetchChartData } from "./thunk";
+import adaptRawDataToPlotlyData from "../../../constructors/dataBuilder";
 
 
 const chartDataInitialState: ChartDataSlice = {
@@ -11,7 +12,7 @@ const chartDataInitialState: ChartDataSlice = {
 };
 
 export const chartDataSlice = createSlice({
-    name: 'chartData',
+    name: 'chartDataSlice',
     initialState: chartDataInitialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -20,6 +21,14 @@ export const chartDataSlice = createSlice({
         })
         .addCase(fetchChartData.rejected, (state) => {
             state.status = 'rejected';
+        }).addCase(fetchChartData.fulfilled, (state, action) => {
+            const data = action.payload.data;
+            const chart = action.payload.chart;
+
+            const transformData = adaptRawDataToPlotlyData(data, chart)
+            state.chartId = chart.id;
+            state.data = transformData;
+            state.status = 'finished';
         })
     }
 });

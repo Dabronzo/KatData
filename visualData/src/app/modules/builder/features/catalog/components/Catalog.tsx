@@ -2,7 +2,6 @@ import React from "react";
 import CatalogList from "./CatalogItem";
 import { useAppSelector } from "../../../../../hooks";
 import { selectFossilCarries, selectNuclearCarries, selectOthersCarries, selectRenewableCarries } from "../store/catalogSlice";
-import { CatalogItem } from "../../../../../types/energyCarries";
 
 
 const Catalog = () => {
@@ -12,12 +11,12 @@ const Catalog = () => {
     const nuclearData = useAppSelector(selectNuclearCarries);
     const otherData = useAppSelector(selectOthersCarries);
 
-    const periodeData: CatalogItem  = {
-        Key: 'PERIODE',
-        Title: 'Date',
-        Description: '',
-        CategoryGroupID: 0,
-    }
+    // const periodeData: CatalogItem  = {
+    //     Key: 'PERIODE',
+    //     Title: 'Date',
+    //     Description: '',
+    //     CategoryGroupID: 0,
+    // }
 
 
 
@@ -49,10 +48,6 @@ const Catalog = () => {
                 <div className="mt-2">
                     <strong>Dimentions</strong>
                 </div>
-                <CatalogList
-                        name="Periode"
-                        items={[periodeData]}
-                    />
             </div>
            
         </div>

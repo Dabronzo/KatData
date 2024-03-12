@@ -18,7 +18,7 @@ const PreviewContainer = () => {
             )}
             {chartResponse?.chart && (
                 <div className="py-2 px-2 bg-slate-400 text-black">
-                   <ChartPreview />
+                   <ChartPreview chart={chartResponse.chart} />
                 </div>
             )}
         </div>

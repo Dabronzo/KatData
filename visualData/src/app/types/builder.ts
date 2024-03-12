@@ -14,8 +14,8 @@ export enum CarriesTypes {
 }
 
 export enum EnergyType {
-    ELETRICITY = 'Eletricity',
-    HEAT = 'Heat',
+    ELETRICITY = 'ElektriciteitTJ_3',
+    HEAT = 'WarmteTJ_5',
     BOTH = 'Both'
 }
 
@@ -30,7 +30,7 @@ const dataChipSchema = z.object({
     verboseName: z.string(),
     dataValue: z.string(),
     color: z.string(),
-    unity: z.nativeEnum(EnergyType).optional(),
+    unity: z.nativeEnum(EnergyType),
     dataType: z.string(),
     timeStamp: z.nativeEnum(TimeStamp).optional(),
 });
