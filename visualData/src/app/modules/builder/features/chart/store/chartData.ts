@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { ChartDataSlice } from "../../../../../types/chart";
 import { fetchChartData } from "./thunk";
 import adaptRawDataToPlotlyData from "../../../constructors/dataBuilder";
+import { RootState } from "../../../../../store";
 
 
 const chartDataInitialState: ChartDataSlice = {
@@ -32,6 +33,11 @@ export const chartDataSlice = createSlice({
         })
     }
 });
+
+
+const selectData = (state: RootState) => state.builder.chart;
+
+export const chartDataSelector = createSelector([selectData], (data) => data.data);
 
 
 export default chartDataSlice.reducer;

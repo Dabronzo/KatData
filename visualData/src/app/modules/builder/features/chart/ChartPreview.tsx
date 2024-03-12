@@ -3,6 +3,7 @@ import { Chart } from '../../../../types/builder';
 import { useAppDispatch } from '../../../../hooks';
 import QueryBuilder from '../../constructors/queryBuilder';
 import { fetchChartData } from './store/thunk';
+import PointerChart from './PointerChart';
 // import adaptRawDataToPlotlyData from '../../constructors/dataBuilder';
 // import testData from '../../../../test/newTestData.json';
 
@@ -22,7 +23,10 @@ const ChartPreview = ({chart}:Props) => {
     dispatch(fetchChartData([query, chart]));
 
     return (
-        <div>Chart!!</div>
+        <div className='h-[500px]'>
+            <PointerChart />
+        </div>
+        
     )
 };
 
