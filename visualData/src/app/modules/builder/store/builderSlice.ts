@@ -1,17 +1,15 @@
-import { PayloadAction, createEntityAdapter, createSelector, createSlice  } from "@reduxjs/toolkit";
-import { BuilderContainer, DataChip, EnergyType, SelectorBuilderResponse } from "../../../types/builder";
+import { PayloadAction, createSelector, createSlice  } from "@reduxjs/toolkit";
+import { BuilderContainer, ChartTypes, DataChip, SelectorBuilderResponse } from "../../../types/builder";
 import { RootState } from "../../../store";
 import ChartBuilder from "../constructors/chartBuilder";
 
 
-const chipAdapter = createEntityAdapter({
-    selectId: (chip: DataChip) => chip.id
-});
 
 const builderInitialState: BuilderContainer ={
-    selection: chipAdapter.getInitialState(),
-    xAxis: [],
-    yAxis: [],
+    lines: [],
+    chartTitle: '',
+    toogleValues: false,
+    chartType: ChartTypes.LINE
 };
 
 export const builderSlice = createSlice({
@@ -20,51 +18,38 @@ export const builderSlice = createSlice({
     reducers: {
         addChipToXAxis: (state, action: PayloadAction<DataChip>) => {
             const chip = {
-                ...chipAdapter.getSelectors().selectById(state.selection, action.payload.id)
+                ...action.payload
             };
-            state.xAxis.push(chip);
-        },
-        addChipToYAxis: (state, action: PayloadAction<DataChip>) => {
-            // y Axis can only accept one chip
-            state.yAxis = [action.payload]
-        },
-        addChipToSelection: (state, action: PayloadAction<DataChip>) => {
-           chipAdapter.addOne(state.selection, action.payload);
-        },
-        updateChipSelection: (state, action: PayloadAction<{chipId: string, value: EnergyType}>) => {
-           chipAdapter.updateOne(state.selection, {
-            id: action.payload.chipId,
-            changes: {
-                unity: action.payload.value
-            }
-           })
-        },
-        deleteChipSelection: (state, action: PayloadAction<string>) => {
-            chipAdapter.removeOne(state.selection, action.payload);
+            state.lines.push(chip);
         },
         deleteChipFromXAxis: (state, action: PayloadAction<string>) => {
-            const indexToDelete = state.xAxis.findIndex((chip) => chip.id === action.payload);
-            state.xAxis.splice(indexToDelete, 1);
+            const indexToDelete = state.lines.findIndex((chip) => chip.id === action.payload);
+            state.lines.splice(indexToDelete, 1);
         },
-        deleteChipFromYAxis: (state) => {
-            state.yAxis = [];
+        setChartTitle: (state, action: PayloadAction<string>) => {
+            state.chartTitle = action.payload;
+        },
+        setToogleValue: (state) => {
+            state.toogleValues = !state.toogleValues;
+        },
+        setChartType: (state, action: PayloadAction<ChartTypes>) => {
+            state.chartType = action.payload;
         }
     },
 
 });
 
 
-const selectXAxis = (state: RootState) => state.builder.builder.xAxis;
+const selectXAxis = (state: RootState) => state.builder.builder.lines;
+const selectChartTitle = (state: RootState) => state.builder.builder.chartTitle;
+const selectToggleValue = (state: RootState) => state.builder.builder.toogleValues;
+const selectChartType = (state: RootState) => state.builder.builder.chartType;
 
-const selectYAxis = (state: RootState) => state.builder.builder.yAxis;
 
 export const xAxisSelector = createSelector([selectXAxis], (xAxis) => xAxis);
-
-export const yAxisSelector = createSelector([selectYAxis], (yAxis) => yAxis);
-
-export const selectSelectionData = (state: RootState) => chipAdapter.getSelectors().selectAll(state.builder.builder.selection);
-
-export const getChipFromSelection = (id: string) => (state: RootState) => chipAdapter.getSelectors().selectById(state.builder.builder.selection, id);
+export const chartTitleSelector = createSelector([selectChartTitle], (title) => title);
+export const toggleValuesSelector = createSelector([selectToggleValue], (toggle) => toggle);
+export const chartTypeSelector = createSelector([selectChartType], (type) => type);
 
 export const chartBuilderSelector = createSelector([xAxisSelector], (xAxis) => {
 
@@ -87,12 +72,10 @@ export const chartBuilderSelector = createSelector([xAxisSelector], (xAxis) => {
 
 export const {
     addChipToXAxis,
-    addChipToYAxis,
-    addChipToSelection,
-    updateChipSelection,
-    deleteChipSelection,
     deleteChipFromXAxis,
-    deleteChipFromYAxis,
+    setChartTitle,
+    setToogleValue,
+    setChartType
 } = builderSlice.actions;
 
 export default builderSlice.reducer;

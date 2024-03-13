@@ -3,9 +3,9 @@ import { CatalogItem } from "../../../../../types/energyCarries";
 import { DataChip } from "../../../../../types/builder";
 import ChipBuilder from "../../../constructors/chipBuilder";
 import { useAppDispatch } from "../../../../../hooks";
-import { addChipToSelection } from "../../../store/builderSlice";
-import PlusIcon from "../../../../../../assets/PlusIcon";
-import CollapseIcon from "../../../../../../assets/CollapseIcon";
+import { addChipToXAxis } from "../../../store/builderSlice";
+import PlusIcon from "../../../../../icons/PlusIcon";
+import CollapseIcon from "../../../../../icons/CollapseIcon";
 
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
     items: CatalogItem[]
 }
 
-const CatalogList = ({name, items}: Props) => {
+const CatalogCarries = ({name, items}: Props) => {
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +48,7 @@ const CatalogList = ({name, items}: Props) => {
                   className="hover:underline focus:outline-none" 
                   onClick={() => {
                     const newChip = createChip(item);
-                    dispatch(addChipToSelection(newChip));
+                    dispatch(addChipToXAxis(newChip));
                   }}
                   >
                     <PlusIcon height={17} width={17} color={'#262928'} />
@@ -62,4 +62,4 @@ const CatalogList = ({name, items}: Props) => {
    )
 };
 
-export default CatalogList;
+export default CatalogCarries;

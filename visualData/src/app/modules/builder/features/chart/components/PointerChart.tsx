@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Plot from 'react-plotly.js';
-import { useAppSelector } from "../../../../hooks";
-import { chartDataSelector } from "./store/chartData";
+import { useAppSelector } from "../../../../../hooks";
+import { chartDataSelector } from "../store/chartData";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { chartTitleSelector, chartTypeSelector, toggleValuesSelector } from "../../../store/builderSlice";
+import { useSelector } from "react-redux";
+import { ChartTypes } from "../../../../../types/builder";
 
 
 
@@ -11,6 +14,10 @@ import jsPDF from "jspdf";
 const PointerChart = () => {
 
     const data = useAppSelector(chartDataSelector);
+    const chartTitle = useAppSelector(chartTitleSelector);
+    const toggleValues = useAppSelector(toggleValuesSelector);
+    const chartType = useSelector(chartTypeSelector);
+
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     const plotRef = useRef<HTMLDivElement>(null);
@@ -29,10 +36,11 @@ const PointerChart = () => {
                 pdf.addImage(imageDataUrl, 'PNG', 10, 10, 190, 100); // Adjust the coordinates and dimensions as needed
 
                 // Save or open the PDF
-                pdf.save('chart.pdf');
+                pdf.save('chart.pdf'); // change here for the name of the chart!
             });
         }
     };
+
 
     useEffect(() => {
         const updateDimensions = () => {
@@ -57,42 +65,50 @@ const PointerChart = () => {
 
 
 
-    // if (data.length === 0 ) {
-    //     console.lo
-    //     return null;
-    // }
-
-    console.log('the data', data)
-
     return (
         <div ref={plotRef} style={{ width: '100%', height: '100%' }}>
-            {data.length > 0 && (
-                <button type="button" onClick={handleDownloadPDF}>
-                    Donwload
-                </button>
-            )}
         {data.length > 0 ? (
             <Plot
-                data={data.map(i => ({
-                    x: i.x,
-                    y: i.y,
-                    name: i.name,
-                    type: i.type,
+                data={data.map(item => ({
+                    x: item.x,
+                    y: item.y,
+                    name: item.name,
+                    fill: chartType === ChartTypes.AREA ? 'tozeroy' : undefined,
+                    type: chartType === ChartTypes.BAR ? 'bar': 'scatter',
                     line: {
-                        color: i.line.color,
-                        width: i.line.width
+                        color: item.line.color,
+                        width: item.line.width
+                    },
+                    text: item.y.map(String),
+                    mode: toggleValues ? 'text+lines+markers' : 'lines+markers',
+                    hoverinfo:  toggleValues ? 'x' : 'x+y',
+                    textposition: 'top center',
+                    marker: {
+                        size: 8,
+                        color: item.line.color,
                     }
                 }))}
                 layout={{
                     width: dimensions.width,
                     height: dimensions.height,
-                    title: 'A Fancy Plot'
+                    title: chartTitle,
+                    plot_bgcolor: '#e3e2de',
+                    paper_bgcolor: '#e3e2de',
                     // Add other layout properties as needed
+                }}
+                config={{
+                    displaylogo: false,
+                    displayModeBar: false
                 }}
             />
         ) : (
             <div>Processing...</div>
         )}
+         {data.length > 0 && (
+                <button type="button" onClick={handleDownloadPDF}>
+                    Donwload
+                </button>
+            )}
     </div>
     )
 };

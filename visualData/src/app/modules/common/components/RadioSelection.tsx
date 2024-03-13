@@ -1,5 +1,5 @@
 import React from 'react';
-import { EnergyType } from '../../../types/builder';
+import { EnergyType } from '../../../types/energyCarries';
 
 type Props = {
     options: EnergyType[],

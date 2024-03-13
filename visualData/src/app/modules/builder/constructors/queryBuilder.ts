@@ -3,7 +3,8 @@
 
 // https://opendata.cbs.nl/ODataFeed/odata/80030ned/TypedDataSet?%24filter=((Energiedragers%20eq%20%27E006588%27)%20or%20(Energiedragers%20eq%20%27E006590%27))&%24select=ID%2C%20CentraleDecentraleProductie%2C%20Energiedragers%2C%20Perioden%2C%20ElektriciteitTJ_3
 
-import { Chart, EnergyType } from "../../../types/builder";
+import { DataChip } from "../../../types/builder";
+import { EnergyType, ProductItem } from "../../../types/energyCarries";
 
 // https://opendata.cbs.nl/ODataFeed/odata/80030ned/TypedDataSet?%24
 
@@ -27,29 +28,28 @@ const BASEURL = 'https://opendata.cbs.nl/ODataFeed/odata/80030ned/TypedDataSet?%
 
 class QueryBuilder {
 
-    constructor(private chart: Chart){}
+    constructor(private lineChips: DataChip[], private productType: ProductItem){}
 
     private getEnergyFilters() {
         const totalProduct = '%20and%20((CentraleDecentraleProductie%20eq%20%27E007022%27))'
         const filterQuery = `filter=(${
-            this.chart.chips.map(chip => `(Energiedragers%20eq%20%27${encodeURIComponent(chip.dataValue)}%27)`).join('%20or%20')
+            this.lineChips.map(chip => `(Energiedragers%20eq%20%27${encodeURIComponent(chip.dataValue)}%27)`).join('%20or%20')
           })`;
         return filterQuery + totalProduct;
     }
 
-    private getUnitySelected() {
-        const selectQuery = `&%24select=ID%2C%20CentraleDecentraleProductie%2C%20Energiedragers%2C%20Perioden%2C%20`
-        if (this.chart.chips[0].unity === EnergyType.ELETRICITY) {
-            return selectQuery + EnergyType.ELETRICITY
+    private getProductType() {
+        const selectQuery = `&%24select=ID%2C%20CentraleDecentraleProductie%2C%20Energiedragers%2C%20Perioden%2C%20`;
+        if (this.productType.value === EnergyType.BOTH) {
+            return 'wait'
         } else {
-
-            return selectQuery + EnergyType.HEAT
+            return selectQuery + this.productType.value;
         }
     }
 
     build() {
         const filter = this.getEnergyFilters();
-        const select = this.getUnitySelected();
+        const select = this.getProductType();
         const final = `${BASEURL + filter + select + '&%24format=json'}`;
         return final;
     }

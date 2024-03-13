@@ -6,7 +6,6 @@ import { RootState } from "../../../../../store";
 
 
 const chartDataInitialState: ChartDataSlice = {
-    chartId: null,
     data: [],
     status: null,
     
@@ -24,10 +23,9 @@ export const chartDataSlice = createSlice({
             state.status = 'rejected';
         }).addCase(fetchChartData.fulfilled, (state, action) => {
             const data = action.payload.data;
-            const chart = action.payload.chart;
+            const chips = action.payload.chips;
 
-            const transformData = adaptRawDataToPlotlyData(data, chart)
-            state.chartId = chart.id;
+            const transformData = adaptRawDataToPlotlyData(data, chips)
             state.data = transformData;
             state.status = 'finished';
         })

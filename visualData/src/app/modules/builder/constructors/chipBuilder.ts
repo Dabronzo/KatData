@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { DataChip, EnergyType } from "../../../types/builder";
+import { DataChip } from "../../../types/builder";
 import { CatalogItem } from "../../../types/energyCarries";
 
 
@@ -10,7 +10,6 @@ class ChipBuilder {
         verboseName: '',
         dataValue: '',
         color: '',
-        unity: EnergyType.ELETRICITY,
         dataType: '',
     }
 

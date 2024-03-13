@@ -23,7 +23,6 @@ const chartDataSchema = z.object({
 export type ChartData = z.infer<typeof chartDataSchema>;
 
 export type ChartDataSlice = {
-    chartId: string | null;
     data: ChartData[];
     status: string | null;
 }
@@ -34,6 +33,7 @@ const cbsValueResponseSchema = z.object({
     Energiedragers: z.string(),
     Perioden: z.string(),
     ElektriciteitTJ_3: z.number().nullable().optional(),
+    WarmteTJ_5: z.number().nullable().optional(),
 })
 
 export const cbsDataResponseSchema = z.object({

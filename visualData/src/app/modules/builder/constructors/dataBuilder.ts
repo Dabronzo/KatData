@@ -1,22 +1,29 @@
-import { Chart } from "../../../types/builder";
+import {  DataChip } from "../../../types/builder";
 import { CbsDataResponse, ChartData, ChartType } from "../../../types/chart"
 
 
-function adaptRawDataToPlotlyData(rawData: CbsDataResponse, chart: Chart) {
+function adaptRawDataToPlotlyData(rawData: CbsDataResponse, chips: DataChip[]) {
     const plotlyData: ChartData[] = [];
   
-    chart.chips.forEach(chip => {
+    chips.forEach(chip => {
       const filteredData = rawData.value.filter(entry => entry.Energiedragers === chip.dataValue);
   
       if (filteredData.length > 0) {
-        const xValues = filteredData.map(entry => entry.Perioden);
+        const xValues = filteredData.map(entry => {
+          const value = entry.Perioden.substring(0, 4);
+          return value;
+        });
 
 
         const yValues = filteredData.map((entry) => {
-            if (!entry.ElektriciteitTJ_3 || entry.ElektriciteitTJ_3 === null) {
+            if (entry.WarmteTJ_5 === null || entry.ElektriciteitTJ_3 === null) {
                 return 0
-            } else {
+            } else if (entry.ElektriciteitTJ_3) {
                 return entry.ElektriciteitTJ_3;
+            } else if (entry.WarmteTJ_5) {
+              return entry.WarmteTJ_5;
+            } else {
+              return 0;
             }
         });
   

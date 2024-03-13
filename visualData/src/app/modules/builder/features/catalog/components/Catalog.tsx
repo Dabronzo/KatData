@@ -1,7 +1,8 @@
 import React from "react";
-import CatalogList from "./CatalogItem";
+import CatalogCarries from "./CatalogCarries";
 import { useAppSelector } from "../../../../../hooks";
 import { selectFossilCarries, selectNuclearCarries, selectOthersCarries, selectRenewableCarries } from "../store/catalogSlice";
+import CatalogProduct from "./CatalogProduct";
 
 
 const Catalog = () => {
@@ -10,6 +11,7 @@ const Catalog = () => {
     const renewableData = useAppSelector(selectRenewableCarries);
     const nuclearData = useAppSelector(selectNuclearCarries);
     const otherData = useAppSelector(selectOthersCarries);
+
 
     // const periodeData: CatalogItem  = {
     //     Key: 'PERIODE',
@@ -29,25 +31,26 @@ const Catalog = () => {
                 <strong>Energy Carries</strong>
             </div>
             <div className="h-80 overflow-y-auto">
-                <CatalogList
+                <CatalogCarries
                     name='Fossil'
-                    items={fossilData}
+                    items={fossilData ? fossilData : []}
                     />
-                 <CatalogList
+                 <CatalogCarries
                         name="Renewable"
-                        items={renewableData}
+                        items={renewableData ? renewableData : []}
                     />
-                <CatalogList
+                <CatalogCarries
                         name="Nuclear"
-                        items={nuclearData}
+                        items={nuclearData ? nuclearData : []}
                     />
-                <CatalogList
+                <CatalogCarries
                         name="Other"
-                        items={otherData}
+                        items={otherData ? otherData : []}
                     />
                 <div className="mt-2">
-                    <strong>Dimentions</strong>
+                    <strong>Product Type</strong>
                 </div>
+                <CatalogProduct />
             </div>
            
         </div>

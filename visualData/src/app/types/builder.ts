@@ -1,4 +1,3 @@
-import { EntityState } from '@reduxjs/toolkit';
 import { z } from 'zod';
 
 
@@ -13,12 +12,6 @@ export enum CarriesTypes {
     NUCLEAR = "E006602"
 }
 
-export enum EnergyType {
-    ELETRICITY = 'ElektriciteitTJ_3',
-    HEAT = 'WarmteTJ_5',
-    BOTH = 'Both'
-}
-
 export enum TimeStamp {
     YEARLY = 'Years',
 }
@@ -30,7 +23,6 @@ const dataChipSchema = z.object({
     verboseName: z.string(),
     dataValue: z.string(),
     color: z.string(),
-    unity: z.nativeEnum(EnergyType),
     dataType: z.string(),
     timeStamp: z.nativeEnum(TimeStamp).optional(),
 });
@@ -38,6 +30,12 @@ const dataChipSchema = z.object({
 export type DataChip = z.infer<typeof dataChipSchema>;
 
 //========================================= CHART ==============================
+
+export enum ChartTypes {
+    LINE = 'scatter',
+    BAR = 'bar',
+    AREA = 'area'
+}
 
 const chartSchema = z.object({
     id: z.string(),
@@ -52,14 +50,12 @@ export type ChartBuilderResponse = {
     error?: string,
 }
 
-type Selection = EntityState<DataChip, string>
-
-
 
 export type BuilderContainer = {
-    selection: Selection,
-    xAxis: DataChip[],
-    yAxis: DataChip[],
+    lines: DataChip[],
+    chartTitle: string,
+    toogleValues: boolean,
+    chartType: ChartTypes,
 };
 
 export type SelectorBuilderResponse = {
