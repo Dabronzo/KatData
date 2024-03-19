@@ -14,10 +14,10 @@ const ToggleButton = () => {
   };
 
   return (
-    <div className='flex flex-col mt-4'>
-        <strong>Show Values on Chart</strong>
+    <div className='flex flex-col'>
+        <strong className='mb-2'>Show Values on Chart</strong>
             <div
-        className={`relative inline-block w-12 h-6 bg-[#7b879c] rounded-full p-1 transition-all duration-300 ${
+        className={`relative inline-block w-12 h-6 bg-[#7b879c] rounded-full transition-all duration-300 ${
             isToggled ? 'bg-[#111112]' : ''
         }`}
         onClick={handleToggle}

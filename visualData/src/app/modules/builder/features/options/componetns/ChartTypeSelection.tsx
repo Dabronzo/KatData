@@ -19,7 +19,7 @@ const ChartTypeSelection = () => {
     };
   
     return (
-      <div className="flex items-center space-x-4 ml-2 my-2">
+      <div className="flex items-center space-x-4 my-[8px]">
         <div
           className={`cursor-pointer ${
             selectedType === ChartTypes.LINE ? 'bg-gray-800 text-gray-200' : 'bg-gray-200 text-gray-800'

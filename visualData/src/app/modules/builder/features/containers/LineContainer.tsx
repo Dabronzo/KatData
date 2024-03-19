@@ -16,7 +16,7 @@ const LineContainer = () => {
     return (
       <div className="mt-4">
         <strong>Line(s)</strong>
-        <div className=" p-2 border bg-white border-black rounded h-20 z-0 overflow-y-scroll">
+        <div className=" p-2 border bg-slate-400 border-black rounded h-20 z-0 overflow-y-scroll">
           <div className="flex flex-wrap space-x-2 space-y-2">
           {data.map((chipData, index) => (
             <Chip key={chipData.id} chip={chipData} className={index <= 1 ? "mt-2 ml-2" : ""} onAxis={true} />

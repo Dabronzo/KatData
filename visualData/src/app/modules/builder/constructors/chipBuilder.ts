@@ -18,7 +18,7 @@ class ChipBuilder {
     private setColorAndName() {
         switch (this.energyCarrie.Key) {
             case 'E006560': // Natural Gas
-                this.chipData.color = '#D0D6B5';
+                this.chipData.color = '#FF0000';
                 this.chipData.verboseName = this.energyCarrie.Title;
             break;
             case 'E006461': // Coal
@@ -50,7 +50,7 @@ class ChipBuilder {
                 this.chipData.verboseName = this.energyCarrie.Title;
             break;
             case 'E006620': // total fossil
-                this.chipData.color = '#E2E2DF';
+                this.chipData.color = '#000000';
                 this.chipData.verboseName = 'Total Fossil';
             break;
             case 'E006621': // other fossil

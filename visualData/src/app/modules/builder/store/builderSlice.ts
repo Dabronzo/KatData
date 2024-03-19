@@ -2,6 +2,7 @@ import { PayloadAction, createSelector, createSlice  } from "@reduxjs/toolkit";
 import { BuilderContainer, ChartTypes, DataChip, SelectorBuilderResponse } from "../../../types/builder";
 import { RootState } from "../../../store";
 import ChartBuilder from "../constructors/chartBuilder";
+import { chartUrlSelector } from "../features/chart/store/chartData";
 
 
 
@@ -9,7 +10,8 @@ const builderInitialState: BuilderContainer ={
     lines: [],
     chartTitle: '',
     toogleValues: false,
-    chartType: ChartTypes.LINE
+    chartType: ChartTypes.LINE,
+
 };
 
 export const builderSlice = createSlice({
@@ -34,7 +36,7 @@ export const builderSlice = createSlice({
         },
         setChartType: (state, action: PayloadAction<ChartTypes>) => {
             state.chartType = action.payload;
-        }
+        },
     },
 
 });
@@ -46,18 +48,19 @@ const selectToggleValue = (state: RootState) => state.builder.builder.toogleValu
 const selectChartType = (state: RootState) => state.builder.builder.chartType;
 
 
+
 export const xAxisSelector = createSelector([selectXAxis], (xAxis) => xAxis);
 export const chartTitleSelector = createSelector([selectChartTitle], (title) => title);
 export const toggleValuesSelector = createSelector([selectToggleValue], (toggle) => toggle);
 export const chartTypeSelector = createSelector([selectChartType], (type) => type);
 
-export const chartBuilderSelector = createSelector([xAxisSelector], (xAxis) => {
+export const chartBuilderSelector = createSelector([xAxisSelector, toggleValuesSelector, chartTypeSelector, chartTitleSelector, chartUrlSelector], (xAxis, toggle, type, title, url) => {
 
     const selectorResponse: SelectorBuilderResponse = {
         chart: null,
         error: null,
     }
-    const builderResponse = new ChartBuilder(xAxis).build();
+    const builderResponse = new ChartBuilder(xAxis, title, type, toggle, url).build();
 
     if (builderResponse.error) {
         selectorResponse.error = builderResponse.error;
@@ -75,7 +78,7 @@ export const {
     deleteChipFromXAxis,
     setChartTitle,
     setToogleValue,
-    setChartType
+    setChartType,
 } = builderSlice.actions;
 
 export default builderSlice.reducer;

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+ import { z } from 'zod';
 
 
 export enum CarriesTypes {
@@ -18,7 +18,7 @@ export enum TimeStamp {
 
 //=================================== CHIP ==================================
 
-const dataChipSchema = z.object({
+export const dataChipSchema = z.object({
     id: z.string(),
     verboseName: z.string(),
     dataValue: z.string(),
@@ -43,6 +43,25 @@ const chartSchema = z.object({
     chips: z.array(dataChipSchema),
 });
 
+const plotAxisLayout = z.object({
+    title: z.object({
+        text: z.string()
+    })
+})
+
+const plotLayoutSchema = z.object({
+    width: z.number(),
+    height: z.number(),
+    title: z.string(),
+    plot_bgcolor: z.string(),
+    paper_bgcolor: z.string(),
+    xaxis: plotAxisLayout.optional(),
+    yaxis: plotAxisLayout.optional(),
+});
+
+
+export type PlotChartLayout = z.infer<typeof plotLayoutSchema>;
+
 export type Chart = z.infer<typeof chartSchema>;
 
 export type ChartBuilderResponse = {
@@ -56,6 +75,7 @@ export type BuilderContainer = {
     chartTitle: string,
     toogleValues: boolean,
     chartType: ChartTypes,
+    url: string | null,
 };
 
 export type SelectorBuilderResponse = {

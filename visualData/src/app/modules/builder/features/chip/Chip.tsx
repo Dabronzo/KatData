@@ -14,9 +14,9 @@ type Props = {
 const Chip = ({chip, className}:Props) => {
     
 
-    const chipStyle = {
-        backgroundColor: chip.color,
-    };
+    // const chipStyle = {
+    //     backgroundColor: chip.color,
+    // };
 
     const dispatch = useAppDispatch();
 
@@ -27,7 +27,23 @@ const Chip = ({chip, className}:Props) => {
 
     return (
         <>
-            <div className={`flex px-2 py-2 items-center rounded-lg ${className}`}
+        <div
+            className={`flex px-2 py-2 items-center bg-white rounded-lg ${className}`}
+            ref={chipRef}
+            // style={chipStyle}
+        >
+            <div
+                className={`inline-block  mr-2`}
+                style={{ backgroundColor: chip.color, width: '20px', height: '20px' }} // Square with chip color
+            />
+            <div className="text-[#262928] text-[14px]"> {/* Black text color */}
+                <strong>{chip.verboseName}</strong>
+            </div>
+            <button className="ml-1" type="button" onClick={() => dispatch(deleteChipFromXAxis(chip.id))}>
+                <CrossIcon height={15} width={15} />
+            </button>
+        </div>
+            {/* <div className={`flex px-2 py-2 items-center rounded-lg ${className}`}
                 ref={chipRef}
                 style={chipStyle}
             >
@@ -37,7 +53,7 @@ const Chip = ({chip, className}:Props) => {
                 <button className="ml-1" type="button" onClick={() => dispatch(deleteChipFromXAxis(chip.id))}>
                         <CrossIcon height={15} width={15} />
                 </button>
-            </div>
+            </div> */}
         </>
       );
 };

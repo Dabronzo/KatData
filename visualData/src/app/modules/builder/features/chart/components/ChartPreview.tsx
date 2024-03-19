@@ -3,8 +3,9 @@ import { DataChip } from '../../../../../types/builder';
 import { useAppDispatch } from '../../../../../hooks';
 import QueryBuilder from '../../../constructors/queryBuilder';
 import { fetchChartData } from '../store/thunk';
-import PointerChart from './PointerChart';
+// import PointerChart from './PointerChart';
 import { ProductItem } from '../../../../../types/energyCarries';
+import ChartWrapper from './ChartWrapper';
 // import adaptRawDataToPlotlyData from '../../constructors/dataBuilder';
 // import testData from '../../../../test/newTestData.json';
 
@@ -21,11 +22,10 @@ const ChartPreview = ({lineChips, product}:Props) => {
 
     dispatch(fetchChartData([query, lineChips]));
 
+    
+
     return (
-        <div className='h-[500px]'>
-            <PointerChart />
-        </div>
-        
+        <ChartWrapper />   
     )
 };
 

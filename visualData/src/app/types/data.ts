@@ -1,7 +1,7 @@
 import { z } from 'zod';
   
 
-export enum ChartType {
+export enum DataType {
     LINE = 'scatter',
 }
 
@@ -12,8 +12,8 @@ const lineSchema = z.object({
 
 
 
-const chartDataSchema = z.object({
-    type: z.nativeEnum(ChartType),
+export const chartDataSchema = z.object({
+    type: z.nativeEnum(DataType),
     x: z.array(z.string()),
     y: z.array(z.number()),
     name: z.string(),
@@ -25,6 +25,7 @@ export type ChartData = z.infer<typeof chartDataSchema>;
 export type ChartDataSlice = {
     data: ChartData[];
     status: string | null;
+    url: string;
 }
 
 const cbsValueResponseSchema = z.object({

@@ -1,5 +1,5 @@
 import {  DataChip } from "../../../types/builder";
-import { CbsDataResponse, ChartData, ChartType } from "../../../types/chart"
+import { CbsDataResponse, ChartData, DataType } from "../../../types/data"
 
 
 function adaptRawDataToPlotlyData(rawData: CbsDataResponse, chips: DataChip[]) {
@@ -28,7 +28,7 @@ function adaptRawDataToPlotlyData(rawData: CbsDataResponse, chips: DataChip[]) {
         });
   
         const chartEntry: ChartData = {
-          type: ChartType.LINE, // Replace YOUR_CHART_TYPE with the actual chart type
+          type: DataType.LINE, // Replace YOUR_CHART_TYPE with the actual chart type
           x: xValues,
           y: yValues,
           name: chip.verboseName,

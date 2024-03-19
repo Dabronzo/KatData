@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { CbsDataResponse, cbsDataResponseSchema } from "../../../../../types/chart";
+import { CbsDataResponse, cbsDataResponseSchema } from "../../../../../types/data";
 import {  DataChip } from "../../../../../types/builder";
 
 export type ChartThunkResponse = {
   data: CbsDataResponse;
   chips: DataChip[];
+  url: string;
 }
 
 export const fetchChartData = createAsyncThunk<ChartThunkResponse, [string, DataChip[]]>(
@@ -24,6 +25,7 @@ export const fetchChartData = createAsyncThunk<ChartThunkResponse, [string, Data
         const thunkResponse: ChartThunkResponse = {
           data: validData.data,
           chips,
+          url: args,
         }
 
 
