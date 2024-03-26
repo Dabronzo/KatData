@@ -75,7 +75,6 @@ export type BuilderContainer = {
     chartTitle: string,
     toogleValues: boolean,
     chartType: ChartTypes,
-    url: string | null,
 };
 
 export type SelectorBuilderResponse = {

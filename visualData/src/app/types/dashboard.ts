@@ -13,7 +13,7 @@ const dashboardChartSchema = z.object({
     chartType: z.nativeEnum(ChartTypes),
     chips: z.array(dataChipSchema),
     url: z.string(),
-});
+})
 
 
 export type DashboardChart = z.infer<typeof dashboardChartSchema>;

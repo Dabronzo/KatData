@@ -1,11 +1,13 @@
 import React from 'react'
-import GraphBuilder from './app/modules/builder/features/GraphBuilder';
+// import GraphBuilder from './app/modules/builder/features/GraphBuilder';
+import Dashboard from './app/modules/dashboard/Dashboard';
 
 function App() {
   
 
   return (
-    <GraphBuilder/>
+    // <GraphBuilder/>
+    <Dashboard />
   )
 }
 
