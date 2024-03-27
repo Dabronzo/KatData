@@ -66,11 +66,12 @@ const DashboardContent = () => {
             cols={{
                 'lg': 12,
             }}
+            draggableCancel='.plot-shabang'
             onLayoutChange={(w) => handleLayout(w)}
         >
             {containers.map((container) =>
                 <div key={container.id}>
-                    <DashboardContainers container={container} trigger={resizeTrigger} finishedResize={resizeFinish} />
+                    <DashboardContainers container={container} />
                 </div>
             )}
 

@@ -1,5 +1,4 @@
-// import { Layout } from 'plotly.js';
-import React, {  useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Plot from 'react-plotly.js';
 import { ChartData } from '../../../../types/data';
 import { ChartTypes } from '../../../../types/builder';
@@ -10,17 +9,12 @@ import { useResizeDetector } from 'react-resize-detector';
 type Props = {
     data: ChartData[],
     chart: DashboardChart,
-    id: string,
-    resizeTrigger: boolean,
-    resizeFinished: boolean,
 };
 
 
 
-const DashboardChartPreview = ({data, chart, resizeTrigger, resizeFinished,}: Props) => {
+const DashboardChartPreview = ({data, chart}: Props) => {
     const {title, chartType, toggleValues} = chart;
-    // const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    // const plotRef = useRef<HTMLDivElement>(null);
     const { width, height, ref } = useResizeDetector({ 
         // refreshMode: 'debounce', 
         // refreshRate: 1000
@@ -30,36 +24,14 @@ const DashboardChartPreview = ({data, chart, resizeTrigger, resizeFinished,}: Pr
         title,
         width: width,
         height: height,
+        // margin: {
+        //     t: 10,
+        // }
     };
 
-    // useEffect(() => {
-    //     const updateDimensions = () => {
-    //         if (plotRef.current) {
-    //             const { width, height } = plotRef.current.getBoundingClientRect();
-    //             setDimensions({ width, height });
-    //         }
-    //     };
-
-    //     // Initial dimensions
-    //     updateDimensions();
-
-    //     // Event listener for window resize
-    //     window.addEventListener('resize', updateDimensions);
-
-    //     // Cleanup
-    //     return () => {
-    //         window.removeEventListener('resize', updateDimensions);
-    //     };
-    // }, [resizeTrigger]);
-
-  
-
-    // useEffect(() => {
-    //     layout.width = width;
-    // }, [resizeFinished]);
 
     return (
-        <div ref={ref} className='w-full h-full'>
+        <div ref={ref} className='w-full h-full plot-shabang'>
             <Plot
                 data={data.map(item => ({
                     x: item.x,
@@ -85,7 +57,6 @@ const DashboardChartPreview = ({data, chart, resizeTrigger, resizeFinished,}: Pr
                     displaylogo: false,
                     displayModeBar: false
                 }}
-                // onUpdate={(e) => console.log('this', e)}
             />
         </div>
     );

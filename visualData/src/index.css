@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+.cursor-pointer:hover button {
+  opacity: 1;
+}
+
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

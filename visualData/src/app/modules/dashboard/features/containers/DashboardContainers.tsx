@@ -4,16 +4,15 @@ import { dashboardDataSelector } from '../../store/dashboardData';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchDashboardData } from '../../store/thunk';
 import DashboardChartPreview from '../charts/DashboardChartPreview';
+import ContainerMenuIcon from '../../../../icons/ContainerMenu';
 // import TestChart from '../charts/TestChart';
 
 type Props = {
     container: DashboardContainer;
-    trigger: boolean;
-    finishedResize: boolean,
 }
 
 
-const DashboardContainers = ({container, trigger, finishedResize}:Props) => {
+const DashboardContainers = ({container}:Props) => {
 
 
     // const url = container.chart.url;
@@ -30,18 +29,19 @@ const DashboardContainers = ({container, trigger, finishedResize}:Props) => {
 
 
     return (
-        <div className='bg-black h-full w-full'>
-            <DashboardChartPreview
+        <div className='h-full w-full pt-8 relative cursor-pointer border rounded-sm border-slate-700'>
+        {/* This div will catch hover events */}
+            <div className="absolute inset-0 pointer-events-none">
+                <DashboardChartPreview
                 data={dataIn}
                 chart={container.chart}
-                id={`plot-${container.id}`}
-                resizeTrigger={trigger}
-                resizeFinished={finishedResize}
-            />
-        </div>
-        
-        
-        // <TestChart resizeFinished={finishedResize} resizeTrigger={trigger} />
+                />
+            </div>
+            {/* Button */}
+            <button className="absolute top-0 right-0 bg-slate-400 p-2 opacity-0 transition duration-300 ease-in-out">
+                <ContainerMenuIcon height={20} width={20} />
+            </button>
+        </div>        
     )
 };
 
